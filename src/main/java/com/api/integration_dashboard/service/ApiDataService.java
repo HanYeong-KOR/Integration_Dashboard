@@ -9,6 +9,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 @Service
@@ -34,5 +41,73 @@ public class ApiDataService {
                 .build();
 
         return apiDataRepository.save(apiData);
+    }
+
+    @Transactional
+    public StringBuilder fetchJokeData() {
+        String url = "https://api.chucknorris.io/jokes/random";
+        HttpURLConnection connection = getHttpURLConnection(url, "GET");
+        StringBuilder responseData = getHttpResponse(connection);
+
+        if (responseData == null) {
+            throw new RuntimeException("Failed to fetch joke data");
+        }
+
+        return responseData;
+    }
+
+    public HttpURLConnection getHttpURLConnection(String strUrl, String method) {
+        URL url;
+        HttpURLConnection conn = null;
+        try {
+            url = new URL(strUrl);
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod(method); // Method 방식 설정: GET/POST/DELETE/PUT
+            conn.setConnectTimeout(5000); // 연결 제한 시간 설정: 5초
+            conn.setRequestProperty("Content-Type", "application/json");
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return conn;
+    }
+
+    public StringBuilder getHttpResponse(HttpURLConnection conn) {
+        StringBuilder sb = null;
+        try {
+            if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                sb = readResponseData(conn.getInputStream());
+            } else {
+                System.out.println(conn.getResponseCode());
+                System.out.println(conn.getResponseMessage());
+                sb = readResponseData(conn.getErrorStream());
+                System.out.println("Error: " + sb.toString());
+                return null;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            conn.disconnect(); // 연결 해제
+        }
+
+        if (sb == null) {
+            return null;
+        }
+
+        return sb;
+    }
+
+    private StringBuilder readResponseData(InputStream inputStream) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            sb.append(line).append("\n");
+        }
+        reader.close();
+
+        return sb;
     }
 }
