@@ -4,8 +4,11 @@ import com.api.integration_dashboard.common.authority.JwtTokenProvider;
 import com.api.integration_dashboard.common.authority.TokenInfo;
 import com.api.integration_dashboard.common.exception.InvalidInputException;
 import com.api.integration_dashboard.common.response.UserInfoResponse;
+import com.api.integration_dashboard.common.status.Role;
 import com.api.integration_dashboard.entity.User;
+import com.api.integration_dashboard.entity.UserRole;
 import com.api.integration_dashboard.repository.UserRepository;
+import com.api.integration_dashboard.repository.UserRoleRepository;
 import com.api.integration_dashboard.request.LoginRequest;
 import com.api.integration_dashboard.request.UserRegisterRequest;
 import jakarta.transaction.Transactional;
@@ -21,6 +24,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+    private final UserRoleRepository userRoleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final JwtTokenProvider jwtTokenProvider;
@@ -34,9 +38,13 @@ public class UserService {
         }
 
         User user = request.toEntity(passwordEncoder.encode(request.getPassword()));
-        System.out.println("user ::: " + user);
-
         userRepository.save(user);
+
+        UserRole userRole = UserRole.builder()
+                .role(Role.USER)
+                .user(user)
+                .build();
+        userRoleRepository.save(userRole);
 
         return "가입되었습니다.";
     }

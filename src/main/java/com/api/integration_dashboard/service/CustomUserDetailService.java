@@ -29,11 +29,9 @@ public class CustomUserDetailService implements UserDetailsService {
     }
 
     private UserDetails createUserDetails(User user) {
-//        List<SimpleGrantedAuthority> authorities = user.getUserRoles().stream()
-//                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getRole()))
-//                .toList();
-
-        List<SimpleGrantedAuthority> authorities = []
+        List<SimpleGrantedAuthority> authorities = user.getUserRoles().stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getRole()))
+                .toList();
 
         return new CustomUser(user.getId(), user.getUsername(), user.getPassword(), authorities);
     }

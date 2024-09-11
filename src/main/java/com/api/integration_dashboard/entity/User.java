@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "user_tb")
@@ -31,6 +32,9 @@ public class User {
     @Column(nullable = false)
     private LocalDate createdDate;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<UserRole> userRoles;
+
     @Builder
     private User(Long id, String username, String password, String nickname) {
         this.id = id;
@@ -38,6 +42,7 @@ public class User {
         this.password = password;
         this.nickname = nickname;
         this.createdDate = LocalDate.now();
+        this.userRoles = null;
     }
 }
 
