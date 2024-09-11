@@ -5,17 +5,22 @@ import com.api.integration_dashboard.entity.User;
 import com.api.integration_dashboard.repository.ApiDataRepository;
 import com.api.integration_dashboard.repository.UserRepository;
 import com.api.integration_dashboard.request.ApiDataRequest;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
+@RequiredArgsConstructor
 public class ApiDataService {
+    private final ApiDataRepository apiDataRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private ApiDataRepository apiDataRepository;
-
-    @Autowired
-    private UserRepository userRepository;
+    public List<ApiData> getAllApiData() {
+        return apiDataRepository.findAll();
+    }
 
     public ApiData fetchAndStoreApiData(ApiDataRequest apiDataRequest) {
         User user = userRepository.findById(apiDataRequest.getUserId())

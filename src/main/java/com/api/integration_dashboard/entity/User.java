@@ -1,5 +1,6 @@
 package com.api.integration_dashboard.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -33,6 +34,7 @@ public class User {
     private LocalDate createdDate;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @JsonIgnore
     private List<UserRole> userRoles;
 
     @Builder

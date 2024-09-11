@@ -8,5 +8,5 @@ const fetchApiData = () => {
 
 // 올바르게 함수 export
 export default {
-    fetchApiData
+    fetchApiData,
 };

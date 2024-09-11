@@ -1,6 +1,8 @@
 import React from 'react';
 
 const ApiDataCard = ({ data }) => {
+    console.log('data', data);
+    
     return (
         <div className="api-data-card">
             <h3>{data.apiName}</h3>

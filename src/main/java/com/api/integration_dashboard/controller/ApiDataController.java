@@ -6,23 +6,22 @@ import com.api.integration_dashboard.service.ApiDataService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.net.HttpURLConnection;
+import java.net.ProtocolException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class ApiDataController {
+    private final ApiDataService apiService;
 
-    @Autowired
-    private ApiDataService apiService;
-
-    @PostMapping("/fetch")
-    public ResponseEntity<ApiData> fetchApiData(@RequestBody ApiDataRequest apiRequest) {
-        ApiData apiData = apiService.fetchAndStoreApiData(apiRequest);
-        return ResponseEntity.ok(apiData);
+    @GetMapping("/fetch")
+    public ResponseEntity<List<ApiData>> fetchApiData() {
+        List<ApiData> apiDatas = apiService.getAllApiData();
+        return ResponseEntity.ok(apiDatas);
     }
 }
 
