@@ -19,6 +19,7 @@ nav ul {
 
 .api-data-container {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-around;
 }
@@ -54,4 +55,74 @@ h2 {
 
 p {
   color: #666;
+}
+
+
+.news-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.news-container input {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.news-container button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.news-container button:hover {
+  background-color: #0056b3;
+}
+
+.news-list {
+  list-style: none;
+  margin: 20px 0;
+  width: 70%;
+}
+
+.news-item {
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.news-item:hover {
+  transform: translateY(-5px);
+}
+
+.news-item h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.news-item p {
+  font-size: 14px;
+  color: #555;
+}
+
+.news-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.news-item a:hover {
+  text-decoration: underline;
 }

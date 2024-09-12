@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import ApiService from '../services/ApiService';
-import ApiDataCard from './ApiDataCard'; // ApiDataCard 컴포넌트를 가져옵니다.
+import JokeCard from './JokeCard'; // ApiDataCard 컴포넌트를 가져옵니다.
+import NaverNews from './NaverNews';
 
 const Dashboard = () => {
     const [apiData, setApiData] = useState([]); // 초기값을 빈 배열로 설정
+    const [naverNews, setNaverNews] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -21,15 +23,16 @@ const Dashboard = () => {
 
     return (
         <div>
-            <h1 className='dashboard-title'>Dashboard</h1>
             <div className="api-data-container">
                 {apiData.length > 0 ? (
                     apiData.map(data => (
-                        <ApiDataCard key={data.id} data={data} />
+                        <JokeCard key={data.id} data={data} />
                     ))
                 ) : (
                     <p>데이터를 로딩 중입니다...</p>
                 )}
+
+                <NaverNews />
             </div>
         </div>
     );

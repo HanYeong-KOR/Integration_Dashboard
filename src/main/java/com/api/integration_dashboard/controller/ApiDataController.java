@@ -25,5 +25,11 @@ public class ApiDataController {
         StringBuilder apiData= apiService.fetchJokeData();
         return ResponseEntity.ok(apiData);
     }
+
+    @PostMapping("/naverNews")
+    public ResponseEntity<StringBuilder> getNaverNews(@RequestBody String search) {
+        StringBuilder apiData = apiService.fetchNaverNews(search);
+        return ResponseEntity.ok(apiData);
+    }
 }
 
