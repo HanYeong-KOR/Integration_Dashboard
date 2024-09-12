@@ -10,7 +10,7 @@ const Dashboard = () => {
         const fetchData = async () => {
             try {
                 const response = await ApiService.jokeApiData();
-                const jokeData = response.data ? [response.data] : []; // 데이터를 배열 형태로 변환
+                const jokeData = response.data ? [response.data] : [];
                 setApiData(jokeData);
             } catch (error) {
                 console.error('API 데이터를 가져오는 중 오류 발생:', error);
