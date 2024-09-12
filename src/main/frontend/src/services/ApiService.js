@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = "http://localhost:9090/api";  // Spring Boot 백엔드 주소
+const API_BASE_URL = "http://localhost:9090/api";
 
 const fetchApiData = () => {
     return axios.get(`${API_BASE_URL}/fetch`);
