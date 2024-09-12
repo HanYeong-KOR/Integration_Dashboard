@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ApiService from '../services/ApiService';
-import JokeCard from './JokeCard'; // ApiDataCard 컴포넌트를 가져옵니다.
+import JokeCard from './JokeCard';
 import NaverNews from './NaverNews';
 
 const Dashboard = () => {
