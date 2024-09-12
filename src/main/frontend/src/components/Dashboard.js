@@ -5,7 +5,6 @@ import NaverNews from './NaverNews';
 
 const Dashboard = () => {
     const [apiData, setApiData] = useState([]); // 초기값을 빈 배열로 설정
-    const [naverNews, setNaverNews] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {

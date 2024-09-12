@@ -29,29 +29,33 @@ function NaverNews() {
 
     return (
         <div className='news-container'>
-            <input
-                type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search news"
-            />
-            <button onClick={fetchNews}>Search</button>
+            <div className='btn-container'>
+                <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    placeholder="Search news"
+                />
+                <button onClick={fetchNews}>Search</button>
+            </div>
 
-            <ul className='news-list'>
-                {naverNews.length > 0 ? (
-                    naverNews.map((newsItem, index) => (
-                        <li key={index} className="news-item">
-                            <h3>{decodeHtml(removeHtmlTags(newsItem.title))}</h3>
-                            <p>{decodeHtml(removeHtmlTags(newsItem.description))}</p>
-                            <a href={newsItem.link} target="_blank" rel="noopener noreferrer">
-                                Read more
-                            </a>
-                        </li>
-                    ))
-                ) : (
-                    <p>No news found. Try a different search term.</p>
-                )}
-            </ul>
+            <div className='list-container'>
+                <ul className='news-list'>
+                    {naverNews.length > 0 ? (
+                        naverNews.map((newsItem, index) => (
+                            <li key={index} className="news-item">
+                                <h3>{decodeHtml(removeHtmlTags(newsItem.title))}</h3>
+                                <p>{decodeHtml(removeHtmlTags(newsItem.description))}</p>
+                                <a href={newsItem.link} target="_blank" rel="noopener noreferrer">
+                                    Read more
+                                </a>
+                            </li>
+                        ))
+                    ) : (
+                        <p>No news found. Try a different search term.</p>
+                    )}
+                </ul>
+            </div>
         </div>
     );
 }

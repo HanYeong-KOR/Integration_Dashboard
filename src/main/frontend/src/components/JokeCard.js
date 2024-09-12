@@ -7,9 +7,9 @@ const JokeCard = ({ data }) => {
     
     return (
         <div className="api-data-card">
-            <h3>{data.apiName}</h3>
-            <p>Response Data: {data.value}</p>
-            <p>Fetched At: {formatDate}</p>
+            <h2>Random Joke</h2>
+            <p>{data.value}</p>
+            <p>Fetched At : {formatDate}</p>
         </div>
     );
 };
