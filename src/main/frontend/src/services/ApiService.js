@@ -16,9 +16,16 @@ const naverNewsData = (searchTerm) => {
     return axios.post(`${API_BASE_URL}/naverNews`, searchTerm);
 };
 
+const karloData = (data) => {
+    console.log("karlo data: " + JSON.stringify(data));
+    
+    return axios.post(`${API_BASE_URL}/karlo`, data);
+};
+
 // 올바르게 함수 export
 export default {
     fetchApiData,
     jokeApiData,
-    naverNewsData
+    naverNewsData,
+    karloData
 };

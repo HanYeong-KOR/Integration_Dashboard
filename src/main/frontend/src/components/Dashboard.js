@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ApiService from '../services/ApiService';
 import JokeCard from './JokeCard';
 import NaverNews from './NaverNews';
+import Karlo from './Karlo';
 
 const Dashboard = () => {
     const [apiData, setApiData] = useState([]);
@@ -32,6 +33,8 @@ const Dashboard = () => {
                 )}
 
                 <NaverNews />
+
+                <Karlo />
             </div>
         </div>
     );
