@@ -37,7 +37,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // 암호화를 위한 passwordEncoder 빈 등록
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
