@@ -56,7 +56,6 @@ public class UserService {
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword());
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-        System.out.println("authentication ::: " + authentication);
         return jwtTokenProvider.createToken(authentication);
     }
 

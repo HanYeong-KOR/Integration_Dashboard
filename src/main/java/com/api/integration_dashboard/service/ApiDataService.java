@@ -73,8 +73,8 @@ public class ApiDataService {
         try {
             url = new URL(strUrl);
             conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod(method); // Method 방식 설정: GET/POST/DELETE/PUT
-            conn.setConnectTimeout(5000); // 연결 제한 시간 설정: 5초
+            conn.setRequestMethod(method);
+            conn.setConnectTimeout(5000);
             conn.setRequestProperty("Content-Type", "application/json");
 
         } catch (MalformedURLException e) {
@@ -94,8 +94,8 @@ public class ApiDataService {
         try {
             url = new URL(strUrl);
             conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod(method); // Method 방식 설정: GET/POST/DELETE/PUT
-            conn.setConnectTimeout(5000); // 연결 제한 시간 설정: 5초
+            conn.setRequestMethod(method);
+            conn.setConnectTimeout(5000);
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("X-Naver-Client-Id", clientId);
             conn.setRequestProperty("X-Naver-Client-Secret", clientSecret);
@@ -124,7 +124,7 @@ public class ApiDataService {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            conn.disconnect(); // 연결 해제
+            conn.disconnect();
         }
 
         if (sb == null) {
