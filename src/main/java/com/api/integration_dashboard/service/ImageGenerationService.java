@@ -44,7 +44,7 @@ public class ImageGenerationService {
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod(method);
         conn.setRequestProperty("Content-Type", "application/json");
-        conn.setRequestProperty("Authorization", "KakaoAK " + API_KEY);  // Replace with your API key
+        conn.setRequestProperty("Authorization", "KakaoAK " + API_KEY);
         conn.setDoOutput(true);
         return conn;
     }
