@@ -45,7 +45,7 @@ function NasaImage() {
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Search news"
+                    placeholder="Search images"
                 />
                 <button onClick={getNasaImage}>Search</button>
             </div>
