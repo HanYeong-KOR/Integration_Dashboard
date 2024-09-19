@@ -4,6 +4,7 @@ import ApiService from '../../services/ApiService';
 import JokeCard from './JokeCard';
 import NaverNews from './NaverNews';
 import Karlo from './Karlo';
+import NasaImage from './NasaImage';
 
 const Dashboard = () => {
     const [apiData, setApiData] = useState([]);
@@ -41,7 +42,12 @@ const Dashboard = () => {
                     <NaverNews />
                 </div>
             </div>
+            <div>
                 <Karlo />
+            </div>
+            <div>
+                <NasaImage />
+            </div>
         </div>
     );
 };

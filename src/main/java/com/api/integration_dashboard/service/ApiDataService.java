@@ -66,6 +66,18 @@ public class ApiDataService {
         return responseData;
     }
 
+    @Transactional
+    public StringBuilder getNasaImageData(String search ) {
+        String url = "https://images-api.nasa.gov/search?q=" + search + "&media_type=image";
+        HttpURLConnection connection = getHttpURLConnection(url, "GET");
+        StringBuilder responseData = getHttpResponse(connection);
+
+        if (responseData == null) {
+            throw new RuntimeException("Failed to get nasa data");
+        }
+
+        return responseData;
+    }
 
     public HttpURLConnection getHttpURLConnection(String strUrl, String method) {
         URL url;

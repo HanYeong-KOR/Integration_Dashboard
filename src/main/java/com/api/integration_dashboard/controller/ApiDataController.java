@@ -43,5 +43,11 @@ public class ApiDataController {
 
         return ResponseEntity.ok(apiResponse);
     }
+
+    @PostMapping("/nasa")
+    public ResponseEntity<StringBuilder> getNasaImage(@RequestBody String search) {
+        StringBuilder apiData= apiService.getNasaImageData(search);
+        return ResponseEntity.ok(apiData);
+    }
 }
 

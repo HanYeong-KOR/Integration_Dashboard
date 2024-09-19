@@ -22,10 +22,17 @@ const karloData = (data) => {
     return axios.post(`${API_BASE_URL}/karlo`, data);
 };
 
+const nasaImageData = (data) => {
+    console.log("NASA data: " + JSON.stringify(data));
+
+    return axios.post(`${API_BASE_URL}/nasa`, data);
+};
+
 // 올바르게 함수 export
 export default {
     fetchApiData,
     jokeApiData,
     naverNewsData,
-    karloData
+    karloData,
+    nasaImageData
 };
