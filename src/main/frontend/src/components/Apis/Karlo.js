@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
-import ApiService from '../services/ApiService';
+import LoadingSpinner from '../Loading';
+import ApiService from '../../services/ApiService';
 
 function Karlo() {
+    const [isLoading, setIsLoading] = useState();
     const [prompt, setPrompt] = useState('');
     const [negativePrompt, setNegativePrompt] = useState('low quality, low contrast, draft, amateur, cut off, cropped, frame');
     const [generatedImage, setGeneratedImage] = useState('');
 
     const generateImage = async () => {
+        setIsLoading(true);
         try {
             const response = await ApiService.karloData({ prompt, negative_prompt: negativePrompt });
             console.log("karlo response", response);
             
-            setGeneratedImage(response.data.images[0].image);  // Assuming the API response contains an image URL
+            setGeneratedImage(response.data.images[0].image);
         } catch (error) {
             console.error('Error generating image:', error);
+        } finally {
+            setIsLoading(false);
         }
     };
     
@@ -35,11 +40,15 @@ function Karlo() {
                 <button onClick={generateImage}>Generate Image</button>
             </div>
 
-            {generatedImage && (
-                <div className="generated-image">   
-                    <h3>Generated Image:</h3>
-                    <img src={generatedImage} alt="Generated" />
-                </div>
+            {isLoading ? (
+                <LoadingSpinner />
+            ) : (
+                generatedImage && (
+                    <div className="generated-image">   
+                        <h3>Generated Image:</h3>
+                        <img src={generatedImage} alt="Generated" />
+                    </div>
+                )
             )}
         </div>
     );

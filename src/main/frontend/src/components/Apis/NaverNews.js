@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
-import ApiService from '../services/ApiService';
+import LoadingSpinner from '../Loading';
+import ApiService from '../../services/ApiService';
 
 function NaverNews() {
+    const [isLoading, setIsLoading] = useState();
     const [searchTerm, setSearchTerm] = useState('');
     const [naverNews, setNaverNews] = useState([]);
 
     const fetchNews = async () => {
+        setIsLoading(true);
         try {
             const response = await ApiService.naverNewsData(searchTerm);
             console.log(response.data);
             setNaverNews(response.data.items);
         } catch (error) {
             console.error("Error fetching news:", error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -40,21 +45,25 @@ function NaverNews() {
             </div>
 
             <div className='list-container'>
-                <ul className='news-list'>
-                    {naverNews.length > 0 ? (
-                        naverNews.map((newsItem, index) => (
-                            <li key={index} className="news-item">
-                                <h3>{decodeHtml(removeHtmlTags(newsItem.title))}</h3>
-                                <p>{decodeHtml(removeHtmlTags(newsItem.description))}</p>
-                                <a href={newsItem.link} target="_blank" rel="noopener noreferrer">
-                                    Read more
-                                </a>
-                            </li>
-                        ))
-                    ) : (
-                        <p>No news found. Try a different search term.</p>
-                    )}
-                </ul>
+                {isLoading ? (
+                    <LoadingSpinner />
+                ) : (
+                    <ul className='news-list'>
+                        {naverNews && naverNews.length > 0 ? (
+                            naverNews.map((newsItem, index) => (
+                                <li key={index} className="news-item">
+                                    <h3>{decodeHtml(removeHtmlTags(newsItem.title))}</h3>
+                                    <p>{decodeHtml(removeHtmlTags(newsItem.description))}</p>
+                                    <a href={newsItem.link} target="_blank" rel="noopener noreferrer">
+                                        Read more
+                                    </a>
+                                </li>
+                            ))
+                        ) : (
+                            <p>No news found</p>  // 검색 결과가 없을 때 처리
+                        )}
+                    </ul>
+                )}
             </div>
         </div>
     );
