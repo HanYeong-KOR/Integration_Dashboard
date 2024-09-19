@@ -27,9 +27,13 @@ nav ul {
 
 .api-data-container {
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-around;
+  align-items: center;
+}
+
+.joke-container {
+  width: 50%;
 }
 
 .title {
@@ -66,6 +70,9 @@ p {
   color: #000;
 }
 
+.news {
+  width: 50%;
+}
 
 .news-container {
   display: flex;
@@ -74,7 +81,8 @@ p {
   margin-top: 20px;
 }
 
-.news-container input {
+.news-container input,
+.karlo-container input {
   width: 300px;
   padding: 10px;
   border: 1px solid #ddd;
@@ -83,7 +91,8 @@ p {
   font-size: 16px;
 }
 
-.news-container button {
+.news-container button,
+.karlo-container button {
   padding: 10px 20px;
   background-color: #007bff;
   color: white;
@@ -101,8 +110,7 @@ p {
 
 .news-list {
   list-style: none;
-  margin: 20px 0;
-  width: 70%;
+  margin: 20px 20px 20px 0;
 }
 
 .news-item {
@@ -140,4 +148,11 @@ p {
 .list-container {
   display: flex;
   justify-content: center;
+}
+
+.karlo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
 }

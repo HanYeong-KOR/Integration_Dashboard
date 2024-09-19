@@ -28,18 +28,20 @@ const Dashboard = () => {
     return (
         <div>
             <div className="api-data-container">
-                {isLoading  ? (
-                    <LoadingSpinner />
-                ) : (
-                    apiData.map(data => (
-                        <JokeCard key={data.id} data={data} />
-                    ))
-                )}
-
-                <NaverNews />
-
-                <Karlo />
+                <div className='joke-container'>
+                    {isLoading  ? (
+                        <LoadingSpinner />
+                    ) : (
+                        apiData.map(data => (
+                            <JokeCard key={data.id} data={data} />
+                        ))
+                    )}
+                </div>
+                <div className='news'>
+                    <NaverNews />
+                </div>
             </div>
+                <Karlo />
         </div>
     );
 };

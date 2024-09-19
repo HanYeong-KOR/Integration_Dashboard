@@ -34,6 +34,7 @@ function NaverNews() {
 
     return (
         <div className='news-container'>
+            <h2>네이버 뉴스</h2>
             <div className='btn-container'>
                 <input
                     type="text"

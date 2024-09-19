@@ -23,8 +23,9 @@ function Karlo() {
     };
     
     return (
-        <div className="image-generation">
-            <div className="form-group">
+        <div className='karlo-container'>
+            <h2>AI 이미지 생성기</h2>
+            <div className='btn-container'>
                 <input
                     type="text"
                     placeholder="Enter prompt"
