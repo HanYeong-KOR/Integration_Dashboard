@@ -1,0 +1,51 @@
+.imageShop-details-container {
+    margin: 50px auto;
+    width: 70%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.imageShop-details-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.imageShop-details-content {
+    margin-bottom: 20px;
+}
+
+.imageShop-details-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.imageShop-details-label {
+    font-weight: bold;
+    color: #555;
+}
+
+.imageShop-details-value {
+    color: #333;
+}
+
+.back-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+}

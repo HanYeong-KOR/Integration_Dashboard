@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import ApiService from '../../services/ApiService';
 import './imageShop.css';
 import axios from "axios";
 
 function ImageShop() {
     const [rows, setRows] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [title, setTitle] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
+    const [price, setPrice] = useState('');
+    const [description, setDescription] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -32,16 +38,35 @@ function ImageShop() {
         }
     };
 
+    const handleModalOpen = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleModalClose = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleSubmit = async () => {
+        setIsModalOpen(false);
+
+        try {
+            const response = await ApiService.uploadImageShop({ "title" : title, "imageUrl" : imageUrl, "price" : price, "description" : description });
+            console.log("karlo response", response);
+        } catch (error) {
+            console.error('Error upload image:', error);
+        } finally {
+            setIsModalOpen(false);
+        }
+    };
+
     return (
-            <main style={{ flexGrow: 1, padding: '24px' }}>
+        <main style={{ flexGrow: 1, padding: '24px' }}>
                     <Box sx={{ padding: 2 }}>
                     
                         <TableContainer component={Paper}>
                             <Table>
                                 <TableHead>
-                                    <Link to="/account/create">
-                                        <button className="new-imageShop-button">생성</button>
-                                    </Link>
+                                    <button className="new-imageShop-button" onClick={handleModalOpen}>생성</button>
                                     <TableRow>
                                         <TableCell>Title</TableCell>
                                         <TableCell>Type</TableCell>
@@ -54,12 +79,13 @@ function ImageShop() {
                                     rows.map((row) => (
                                         <TableRow key={row.shop_id}>
                                             <TableCell>
-                                                {/* <Link
-                                                    to={`/shop/details/${row.shop_id}`}
-                                                    state={{ accountData: row }}
-                                                > */}
+                                                <Link
+                                                    className='imageShop-link'
+                                                    to={`/imageShop/details/${row.shop_id}`}
+                                                    state={{ imageShopData: row }}
+                                                >
                                                     {row.title}
-                                                {/* </Link> */}
+                                                </Link>
                                             </TableCell>
                                             <TableCell>Image</TableCell>
                                             <TableCell>{row.price}</TableCell>
@@ -78,6 +104,47 @@ function ImageShop() {
                             </Table>
                         </TableContainer>
                     </Box>
+
+                    {isModalOpen && (
+                        <div className="modal">
+                            <div className="modal-content">
+                                <h3>Upload Image Details</h3>
+                                <label>
+                                    Title:
+                                    <input
+                                        type="text"
+                                        value={title}
+                                        onChange={(e) => setTitle(e.target.value)}
+                                    />
+                                </label>
+                                <label>
+                                    Image URL:
+                                    <input
+                                        type="url"
+                                        value={imageUrl}
+                                        onChange={(e) => setImageUrl(e.target.value)}
+                                    />
+                                </label>
+                                <label>
+                                    Price:
+                                    <input
+                                        type="number"
+                                        value={price}
+                                        onChange={(e) => setPrice(e.target.value)}
+                                    />
+                                </label>
+                                <label>
+                                    Description:
+                                    <textarea
+                                        value={description}
+                                        onChange={(e) => setDescription(e.target.value)}
+                                    />
+                                </label>
+                                <button onClick={handleSubmit}>Submit</button>
+                                <button onClick={handleModalClose}>Close</button>
+                            </div>
+                        </div>
+                    )}
             </main>
     );
 }

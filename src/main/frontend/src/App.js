@@ -6,6 +6,7 @@ import Login from './components/Login/login';
 import Signup from './components/Signup/signup';
 import Home from './components/Home/home';
 import ImageShop from './components/ImageShop/imageShop';
+import ImageShopRecord from './components/ImageShop/detail/imageShopRecord';
 import './App.css';
 
 function App() {
@@ -17,13 +18,13 @@ function App() {
     return (
         <div className="App">
             {!hideNavbarAndDashboard && <Navbar />}
-            {(!hideNavbarAndDashboard && location.pathname !== '/imageShop') && <Dashboard />}
             
             <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
-                <Route path="/home" element={<Home />} />
+                <Route path="/home" element={<Dashboard />} />
                 <Route path="/imageShop" element={<ImageShop />} />
+                <Route path="/imageShop/details/:id" element={<ImageShopRecord />} />
             </Routes>
         </div>
     );

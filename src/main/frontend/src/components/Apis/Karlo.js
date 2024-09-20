@@ -96,6 +96,14 @@ function Karlo() {
                             />
                         </label>
                         <label>
+                            Image URL:
+                            <input
+                                type="url"
+                                value={generatedImage}
+                                disabled
+                            />
+                        </label>
+                        <label>
                             Price:
                             <input
                                 type="number"
