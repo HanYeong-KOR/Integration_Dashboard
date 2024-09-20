@@ -21,6 +21,18 @@ function Karlo() {
             setIsLoading(false);
         }
     };
+
+    const uploadImage = async () => {
+        setIsLoading(true);
+        try {
+            const response = await ApiService.uploadImageShop();
+            console.log("upload response", response);
+        } catch (error) {
+            console.error('Error upload image:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
     
     return (
         <div className='karlo-container'>
@@ -48,6 +60,8 @@ function Karlo() {
                     <div className="generated-image">   
                         <h3>Generated Image:</h3>
                         <img src={generatedImage} alt="Generated" />
+                        <br />
+                        <button onClick={uploadImage}>Upload Image</button>
                     </div>
                 )
             )}

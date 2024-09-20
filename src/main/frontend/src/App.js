@@ -5,6 +5,7 @@ import Dashboard from './components/Apis/Dashboard';
 import Login from './components/Login/login';
 import Signup from './components/Signup/signup';
 import Home from './components/Home/home';
+import ImageShop from './components/ImageShop/imageShop';
 import './App.css';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/home" element={<Home />} />
+                <Route path="/imageShop" element={<ImageShop />} />
             </Routes>
         </div>
     );

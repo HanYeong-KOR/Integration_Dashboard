@@ -10,6 +10,15 @@ nav ul {
   justify-content: space-around;
 }
 
+.custom-link {
+  text-decoration: none;
+  color: white;
+}
+
+.custom-link:hover {
+  color: lightgray;
+}
+
 .api-data-card {
   background-color: #f8f9fa;
   border: 1px solid #ccc;
