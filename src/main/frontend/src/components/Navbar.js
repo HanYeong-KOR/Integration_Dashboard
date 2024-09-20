@@ -7,7 +7,9 @@ const Navbar = () => {
         <nav>
             <h2 className='title'>API Dashboard</h2>
             <ul>
-                <li>Home</li>
+                <Link to="/home" className='custom-link'>
+                    <li>Home</li>
+                </Link>
                 <Link to="/imageShop" className='custom-link'>
                     <li>Image Shop</li>
                 </Link>

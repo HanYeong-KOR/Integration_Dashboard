@@ -17,7 +17,7 @@ function App() {
     return (
         <div className="App">
             {!hideNavbarAndDashboard && <Navbar />}
-            {!hideNavbarAndDashboard && <Dashboard />}
+            {(!hideNavbarAndDashboard && location.pathname !== '/imageShop') && <Dashboard />}
             
             <Routes>
                 <Route path="/login" element={<Login />} />

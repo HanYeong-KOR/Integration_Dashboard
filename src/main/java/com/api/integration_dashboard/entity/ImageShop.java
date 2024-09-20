@@ -32,19 +32,19 @@ public class ImageShop {
     @Column(nullable = false)
     private LocalDate createdDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_owner_id", nullable = false)
-    private User user;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_owner_id", nullable = true)
+//    private User user;
 
 
     @Builder
-    private ImageShop(Long shop_id, String title, String imageUrl, Integer price, String description, User user) {
+    private ImageShop(Long shop_id, String title, String imageUrl, Integer price, String description) {
         this.shop_id = shop_id;
         this.title = title;
         this.imageUrl = imageUrl;
         this.price = price;
         this.description = description;
         this.createdDate = LocalDate.now();
-        this.user = user;
+//        this.user = user;
     }
 }

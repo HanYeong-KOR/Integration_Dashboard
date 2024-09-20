@@ -7,6 +7,10 @@ function Karlo() {
     const [prompt, setPrompt] = useState('');
     const [negativePrompt, setNegativePrompt] = useState('low quality, low contrast, draft, amateur, cut off, cropped, frame');
     const [generatedImage, setGeneratedImage] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [title, setTitle] = useState('');
+    const [price, setPrice] = useState('');
+    const [description, setDescription] = useState('');
 
     const generateImage = async () => {
         setIsLoading(true);
@@ -22,15 +26,27 @@ function Karlo() {
         }
     };
 
-    const uploadImage = async () => {
+    const handleModalOpen = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleModalClose = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleSubmit = async () => {
+        setIsModalOpen(false);
         setIsLoading(true);
+        console.log('generatedImage', generatedImage);
+
         try {
-            const response = await ApiService.uploadImageShop();
-            console.log("upload response", response);
+            const response = await ApiService.uploadImageShop({ "title" : title, "imageUrl" : generatedImage, "price" : price, "description" : description });
+            console.log("karlo response", response);
         } catch (error) {
             console.error('Error upload image:', error);
         } finally {
             setIsLoading(false);
+            setIsModalOpen(false);
         }
     };
     
@@ -61,9 +77,43 @@ function Karlo() {
                         <h3>Generated Image:</h3>
                         <img src={generatedImage} alt="Generated" />
                         <br />
-                        <button onClick={uploadImage}>Upload Image</button>
+                        <button onClick={handleModalOpen}>Upload Image</button>
                     </div>
                 )
+            )}
+
+            {/* Modal */}
+            {isModalOpen && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <h3>Upload Image Details</h3>
+                        <label>
+                            Title:
+                            <input
+                                type="text"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                            />
+                        </label>
+                        <label>
+                            Price:
+                            <input
+                                type="number"
+                                value={price}
+                                onChange={(e) => setPrice(e.target.value)}
+                            />
+                        </label>
+                        <label>
+                            Description:
+                            <textarea
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </label>
+                        <button onClick={handleSubmit}>Submit</button>
+                        <button onClick={handleModalClose}>Close</button>
+                    </div>
+                </div>
             )}
         </div>
     );

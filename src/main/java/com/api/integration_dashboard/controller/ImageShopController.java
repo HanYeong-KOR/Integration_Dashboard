@@ -29,4 +29,11 @@ public class ImageShopController {
         return ResponseEntity.ok(imageShop);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteImageShop(@PathVariable Long id) {
+        System.out.println("id : " + id);
+        boolean isDeleted = imageShopService.deleteImageShop(id);
+        return isDeleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+    }
+
 }

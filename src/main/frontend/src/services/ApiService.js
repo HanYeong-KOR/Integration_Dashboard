@@ -29,7 +29,7 @@ const nasaImageData = (data) => {
 };
 
 const uploadImageShop = (data) => {
-    console.log("NASA data: " + JSON.stringify(data));
+    console.log("upload data: " + JSON.stringify(data));
 
     return axios.post(`${API_BASE_URL}/imageShop/create`, data);
 };

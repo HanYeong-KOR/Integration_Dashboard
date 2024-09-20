@@ -30,17 +30,26 @@ public class ImageShopService {
     @Transactional
     public ImageShop createImageShop(ImageShopRequest imageShopRequest) {
         // User 조회
-        User user = userRepository.findById(imageShopRequest.getUser().getId())
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + imageShopRequest.getUser()));
+//        User user = userRepository.findById(imageShopRequest.getUser().getId())
+//                .orElseThrow(() -> new RuntimeException("User not found with id: " + imageShopRequest.getUser()));
 
         ImageShop imageShop = ImageShop.builder()
                 .title(imageShopRequest.getTitle())
                 .imageUrl(imageShopRequest.getImageUrl())
                 .price(imageShopRequest.getPrice())
                 .description(imageShopRequest.getDescription())
-                .user(user)
+//                .user(user)
                 .build();
 
         return imageShopRepository.save(imageShop);
+    }
+
+    @Transactional
+    public boolean deleteImageShop(Long id) {
+        if (imageShopRepository.findById(id).isPresent()) {
+            imageShopRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }
