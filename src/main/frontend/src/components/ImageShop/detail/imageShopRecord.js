@@ -36,7 +36,7 @@ function ImageShopRecord() {
                     <span className="imageShop-details-value">{imageShopData.createdDate}</span>
                 </div>
             </div>
-            <div className='btn-container'>
+            <div className="btn-container">
                 <button className="back-button" onClick={() => navigate(-1)}>이전</button>
                 <button className="back-button">구매</button>
             </div>
