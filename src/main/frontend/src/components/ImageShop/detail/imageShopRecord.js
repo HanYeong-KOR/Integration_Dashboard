@@ -25,7 +25,7 @@ function ImageShopRecord() {
                 </div>
                 <div className="imageShop-details-item">
                     <span className="imageShop-details-label">Price:</span>
-                    <span className="imageShop-details-value">{imageShopData.price}</span>
+                    <span className="imageShop-details-value">{imageShopData.price} 원</span>
                 </div>
                 <div className="imageShop-details-item">
                     <span className="imageShop-details-label">Description:</span>
@@ -36,7 +36,10 @@ function ImageShopRecord() {
                     <span className="imageShop-details-value">{imageShopData.createdDate}</span>
                 </div>
             </div>
-            <button className="back-button" onClick={() => navigate(-1)}>Back to ImageShop</button>
+            <div className='btn-container'>
+                <button className="back-button" onClick={() => navigate(-1)}>이전</button>
+                <button className="back-button">구매</button>
+            </div>
         </div>
     );
 }

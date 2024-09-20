@@ -106,8 +106,8 @@ function ImageShop() {
                     </Box>
 
                     {isModalOpen && (
-                        <div className="modal">
-                            <div className="modal-content">
+                        <div className="imageShop-modal">
+                            <div className="imageShop-modal-content">
                                 <h3>Upload Image Details</h3>
                                 <label>
                                     Title:

@@ -35,7 +35,7 @@
 
 .back-button {
     display: block;
-    width: 100%;
+    width: 30%;
     padding: 10px;
     background-color: #007bff;
     color: white;
@@ -48,4 +48,9 @@
 
 .back-button:hover {
     background-color: #0056b3;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: space-between;
 }

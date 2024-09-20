@@ -91,7 +91,7 @@ p {
 }
 
 .news-container input,
-.karlo-container input {
+.karlo-container .btn-container input {
   width: 300px;
   padding: 10px;
   border: 1px solid #ddd;
